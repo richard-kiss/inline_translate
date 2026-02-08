@@ -17,11 +17,19 @@ Click the extension icon in the toolbar to access settings:
 
 ## Fair Usage & API Limitations
 
-This extension utilizes a public Google Translate API endpoint (`client=gtx`) that is generally intended for internal or low-volume use.
+This extension utilizes a public Google Translate API endpoint that is generally intended for internal or low-volume use.
 
-*   **Rate Limiting**: Excessive usage in a short period may result in temporary IP blocks or request failures (HTTP 429 Too Many Requests).
+*   **Rate Limiting**: Excessive usage in a short period may result in temporary IP blocks or request failures.
 *   **Intended Use**: This tool is designed for personal, lightweight translation tasks (e.g., learning new words, occasional sentence translation). It is not suitable for bulk translation or heavy automated usage.
 *   **Privacy**: While the extension only sends the selected text to Google for translation, please be aware of Google's terms of service regarding data usage when using their services.
+
+## Permissions
+
+This extension requires the following permissions to function:
+
+*   **Storage**: Required to save your settings (target language) and translation history locally on your device.
+*   **Host Permissions**: Needed to communicate with the Google Translate service to fetch translations.
+*   **Access to all websites**: Required for the content script to run on any page you visit, allowing it to detect text selection and display the translation bubble. The extension only acts when you actively trigger a translation.
 
 ## Installation
 
