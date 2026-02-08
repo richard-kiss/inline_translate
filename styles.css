@@ -1,0 +1,26 @@
+#inline-translate-bubble {
+    position: absolute;
+    z-index: 10000;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: sans-serif;
+    font-size: 14px;
+    max-width: 300px;
+    line-height: 1.4;
+    pointer-events: auto;
+    transition: opacity 0.2s;
+}
+
+#inline-translate-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}

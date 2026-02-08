@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "name": "Inline Translator",
+    "version": "1.0",
+    "description": "Translate selected text inline (Alt + Select on Windows/Linux, Option + Select on macOS) and collect/export your translation history.",
+    "icons": {
+        "16": "Translation.png",
+        "48": "Translation.png",
+        "128": "Translation.png"
+    },
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "Translation.png",
+            "48": "Translation.png",
+            "128": "Translation.png"
+        }
+    },
+    "host_permissions": [
+        "https://translate.googleapis.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ]
+        }
+    ]
+}
