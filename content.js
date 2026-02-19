@@ -41,13 +41,26 @@ document.addEventListener('keydown', (event) => {
 function translateAndShow(text, top, left) {
     showBubble("Translating...", top, left);
 
-    chrome.runtime.sendMessage({ action: 'translate', text: text }, (response) => {
-        if (response && response.success) {
-            updateBubble(response.translation);
-        } else {
-            updateBubble("Error: " + (response ? response.error : "Unknown error"));
+    // Check if chrome.runtime is available
+    if (chrome && chrome.runtime && chrome.runtime.sendMessage) {
+        try {
+            chrome.runtime.sendMessage({ action: 'translate', text: text }, (response) => {
+                if (chrome.runtime.lastError) {
+                    updateBubble("Error: " + chrome.runtime.lastError.message);
+                    return;
+                }
+                if (response && response.success) {
+                    updateBubble(response.translation, response.phonetic);
+                } else {
+                    updateBubble("Error: " + (response ? response.error : "Unknown error"));
+                }
+            });
+        } catch (error) {
+            updateBubble("Error: Connection lost. Please reload the page.");
         }
-    });
+    } else {
+        updateBubble("Error: Extension context invalidated. Reload page.");
+    }
 }
 
 function showBubble(text, top, left) {
@@ -55,6 +68,19 @@ function showBubble(text, top, left) {
 
     bubble = document.createElement('div');
     bubble.id = 'inline-translate-bubble';
+    bubble.style.position = 'absolute';
+    bubble.style.zIndex = '10000';
+    bubble.style.backgroundColor = 'white';
+    bubble.style.border = '1px solid #ccc';
+    bubble.style.padding = '8px';
+    bubble.style.borderRadius = '4px';
+    bubble.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+    bubble.style.maxWidth = '300px';
+    bubble.style.fontFamily = 'Arial, sans-serif';
+    bubble.style.fontSize = '14px';
+    bubble.style.color = '#333';
+
+    // Initial simple text content
     bubble.textContent = text;
 
     document.body.appendChild(bubble);
@@ -68,9 +94,36 @@ function showBubble(text, top, left) {
     bubble.style.left = `${left - (bubbleWidth / 2)}px`; // Center horizontally
 }
 
-function updateBubble(text) {
+function updateBubble(translation, phonetic) {
     if (bubble) {
-        bubble.textContent = text;
+        // Clear current content
+        bubble.innerHTML = '';
+        bubble.style.color = '#333';
+
+        // Container for translation
+        const translationDiv = document.createElement('div');
+        translationDiv.style.marginBottom = '5px';
+        translationDiv.textContent = translation;
+        bubble.appendChild(translationDiv);
+
+        // If we have phonetic text
+        if (phonetic) {
+            const extraInfoDiv = document.createElement('div');
+            extraInfoDiv.style.display = 'flex';
+            extraInfoDiv.style.alignItems = 'center';
+            extraInfoDiv.style.gap = '8px';
+            extraInfoDiv.style.fontSize = '0.9em';
+            extraInfoDiv.style.color = '#666';
+            extraInfoDiv.style.borderTop = '1px solid #eee';
+            extraInfoDiv.style.paddingTop = '4px';
+
+            const phoneticSpan = document.createElement('span');
+            phoneticSpan.textContent = `[ ${phonetic} ]`;
+            phoneticSpan.style.fontStyle = 'italic';
+            extraInfoDiv.appendChild(phoneticSpan);
+
+            bubble.appendChild(extraInfoDiv);
+        }
     }
 }
 

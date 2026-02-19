@@ -1,13 +1,24 @@
-# Inline Translator
+# Inline Translator (Browser Extension)
 
 Translate selected text inline and collect/export your translation history.
+
+## Features
+
+*   **Inline Translation**: Select text while holding the **Alt** key to see a translation bubble instantly.
+*   **Phonetic Transcription**: Displays the phonetic form (IPA) of the original text to help with pronunciation.
+*   **History Tracking**: Automatically saves unique translations to a local history for review.
+*   **Export**: Export your translation history to CSV format for use in flashcard apps or study tools.
+
+Please keep in mind that this extension is tested only with **Microsoft Edge**.
 
 ## Usage
 
 1. **Select Text**: Highlight any text on a webpage.
 2. **Trigger Translation**: Hold the **Alt** key (on Windows/Linux) or the **Option** key (on macOS) while selecting usage.
    - *Note*: You must be holding the key when you release the mouse button.
-3. **View Translation**: A small bubble will appear above the text with the translation.
+3. **View Translation**: A small bubble will appear above the text showing:
+    - The translated text.
+    - The phonetic transcription (e.g., `/ˈrekəɡnaɪz/`).
 4. **Manage History**: Click the extension icon to view your word collection, export history, or clear it.
 
 ## Configuration
