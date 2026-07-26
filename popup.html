@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <div style="font-size: 12px; color: #666; margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 4px; border-left: 3px solid #007bff;">
+    <div
+        style="font-size: 12px; color: #666; margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 4px; border-left: 3px solid #007bff;">
         Hold <strong>Alt</strong> (Windows/Linux) or <strong>Option</strong> (macOS) while selecting text to translate.
     </div>
 
@@ -20,8 +21,22 @@
         </select>
     </div>
 
+    <h3>Add Word/Phrase</h3>
+    <form id="addWordForm">
+        <input type="text" id="sourceWord" placeholder="Original word..." required
+            style="width: 100%; padding: 6px; margin-bottom: 8px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;">
+        <input type="text" id="translatedWord" placeholder="Translation..." required
+            style="width: 100%; padding: 6px; margin-bottom: 8px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;">
+        <input type="text" id="phoneticWord" placeholder="Phonetic (optional)"
+            style="width: 100%; padding: 6px; margin-bottom: 8px; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box;">
+        <button type="submit" style="background-color: #28a745; color: white; border: none;">Add to Collection</button>
+    </form>
+
     <h3>Word Collection</h3>
     <div id="stats">Loading...</div>
+    <div id="manualWordsList"
+        style="max-height: 200px; overflow-y: auto; margin-bottom: 15px; border: 1px solid #eee; border-radius: 4px; padding: 10px;">
+    </div>
     <div class="controls">
         <button id="exportBtn">Export to Markdown</button>
         <button id="clearBtn">Clear History</button>

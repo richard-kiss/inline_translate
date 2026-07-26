@@ -53,3 +53,53 @@ button:hover {
 #clearBtn:hover {
     background-color: #a71d2a;
 }
+
+#addWordForm {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #e9ecef;
+}
+
+#addWordForm input {
+    font-size: 12px;
+}
+
+#addWordForm button {
+    margin-bottom: 0;
+}
+
+#addWordForm button:hover {
+    background-color: #218838;
+}
+
+.manual-word-item {
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: white;
+    border-left: 3px solid #28a745;
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.manual-word-item .word-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.manual-word-item .word-source {
+    font-weight: bold;
+    color: #333;
+}
+
+.manual-word-item .word-translation {
+    color: #666;
+}
+
+.manual-word-item .word-phonetic {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+}
